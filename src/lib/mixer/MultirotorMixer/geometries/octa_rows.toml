@@ -1,0 +1,52 @@
+# Octorotor with 2 station-wise rows
+
+[info]
+key = "8r"
+description = "Octorotor, 2 rows of 4"
+
+[rotor_default]
+direction = "CW"
+axis      = [0.0, 0.0, -1.0]
+Ct        = 1.0
+Cm        = 0.05
+
+[[rotors]]
+name      = "front_right_top"
+position  = [0.832050, 0.554700, 0.0]
+direction = "CCW"
+
+[[rotors]]
+name     = "front_left_top"
+position = [0.832050, -0.554700, 0.0]
+direction = "CW"
+
+[[rotors]]
+name      = "rear_left_top"
+position  = [-0.447214, -0.894427, 0.0]
+direction = "CCW"
+
+[[rotors]]
+name     = "rear_right_top"
+position = [-0.447214, 0.894427, 0.0]
+direction = "CW"
+
+[[rotors]]
+name     = "front_left_bottom"
+position = [0.447214, -0.894427, 0.0]
+direction = "CCW"
+
+[[rotors]]
+name      = "front_right_bottom"
+position  = [0.447214, 0.894427, 0.0]
+direction = "CW"
+
+[[rotors]]
+name     = "rear_right_bottom"
+position = [-0.832050, 0.554700, 0.0]
+direction = "CCW"
+
+[[rotors]]
+name      = "rear_left_bottom"
+position  = [-0.832050, -0.554700, 0.0]
+direction = "CW"
+
