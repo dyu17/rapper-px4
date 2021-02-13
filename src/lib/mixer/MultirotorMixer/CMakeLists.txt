@@ -41,6 +41,7 @@ set(geometry_files
 	octa_cox.toml
 	octa_cox_wide.toml
 	octa_plus.toml
+	octa_rows.toml
 	octa_x.toml
 	quad_deadcat.toml
 	quad_h.toml

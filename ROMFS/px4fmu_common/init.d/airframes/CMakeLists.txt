@@ -122,6 +122,7 @@ px4_add_romfs_files(
 	# [12000, 12999] Octo Cox
 	12001_octo_cox
 	12002_steadidrone_mavrik
+	12003_octo_row
 
 	# [13000, 13999] VTOL
 	13000_generic_vtol_standard
@@ -140,6 +141,7 @@ px4_add_romfs_files(
 	13014_vtol_babyshark
 	13015_generic_vtol_standard
 	13050_generic_vtol_octo
+	13051_row_vtol_octo
 	13200_generic_vtol_tailsitter
 
 	# [14000, 14999] Tri Y
