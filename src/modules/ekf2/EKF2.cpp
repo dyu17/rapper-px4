@@ -707,13 +707,11 @@ void EKF2::PublishLocalPosition(const hrt_abstime &timestamp)
 	lpos.heading = Eulerf(_ekf.getQuaternion()).psi();
 	lpos.delta_heading = Eulerf(delta_q_reset).psi();
 
-	lpos.dist_bottom_valid = _ekf.isTerrainEstimateValid();
-
-	float terrain_vpos = _ekf.getTerrainVertPos();
-
 	// Distance to bottom surface (ground) in meters
 	// constrain the distance to ground to _rng_gnd_clearance
-	lpos.dist_bottom = math::max(terrain_vpos - lpos.z, _param_ekf2_min_rng.get());
+	lpos.dist_bottom = math::max(_ekf.getTerrainVertPos() - lpos.z, _param_ekf2_min_rng.get());
+	lpos.dist_bottom_valid = _ekf.isTerrainEstimateValid();
+	lpos.dist_bottom_sensor_bitfield = _ekf.getTerrainEstimateSensorBitfield();
 
 	if (!_had_valid_terrain) {
 		_had_valid_terrain = lpos.dist_bottom_valid;
@@ -965,6 +963,13 @@ void EKF2::PublishStatus(const hrt_abstime &timestamp)
 	_ekf.get_ekf_lpos_accuracy(&status.pos_horiz_accuracy, &status.pos_vert_accuracy);
 	_ekf.get_ekf_soln_status(&status.solution_status_flags);
 	_ekf.getImuVibrationMetrics().copyTo(status.vibe);
+
+	// reset counters
+	status.reset_count_vel_ne = _ekf.state_reset_status().velNE_counter;
+	status.reset_count_vel_d = _ekf.state_reset_status().velD_counter;
+	status.reset_count_pos_ne = _ekf.state_reset_status().posNE_counter;
+	status.reset_count_pod_d = _ekf.state_reset_status().posD_counter;
+	status.reset_count_quat = _ekf.state_reset_status().quat_counter;
 
 	status.time_slip = _last_time_slip_us * 1e-6f;
 
